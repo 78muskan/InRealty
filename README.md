@@ -18,6 +18,12 @@ Before running the project, ensure you have the following installed:
 - pnpm (I tested it using pnpm, but npm and yarn would be fine.)
 
 ## **Getting Started**
+frontend file name:real-estate.zip
+backend files name : WelcometoRealty.zip
+                     Login_form_with_firebase.zip
+                     index.py
+
+ppt :Wintech.pptx
 
 1. **Clone the repository**
 
