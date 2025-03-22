@@ -1,10 +1,10 @@
-# **RealEstate**
+# **InRealty**
 
-A modern real estate marketplace to find your perfect property
+A modern real estate marketplace to find your perfect property.
 
 ## **Tech Stack**
 
-- **Frontend**: Next.js, React.js, TypeScript
+- **Frontend**: Next.js, TypeScript
 - **State Management**: Redux
 - **UI Components**: ShadCN
 - **Form Handling**: React Hook Form
@@ -22,8 +22,8 @@ Before running the project, ensure you have the following installed:
 1. **Clone the repository**
 
    ```bash
-   https://github.com/adityagecv/RealEstate.git
-   cd RealEstate
+   https://github.com/adityagecv/InRealty.git
+   cd InRealty
    ```
 
 2. **Install dependencies**

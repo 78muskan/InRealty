@@ -1,21 +1,39 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Calendar } from "@/components/ui/calendar"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { Heart, Share, MapPin, Bed, Bath, Square, Car, CalendarIcon, Phone, Mail, MessageSquare } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Heart,
+  Share,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Car,
+  CalendarIcon,
+  Phone,
+  Mail,
+  MessageSquare,
+} from "lucide-react";
 
 // Sample property data
 const property = {
   id: 1,
-  title: "Modern Apartment in Downtown",
+  title: "Modern Apartment in Dehradun",
   price: 350000,
-  location: "123 Main St, Downtown, City",
+  location: "123 Main St, Dehradun, City",
   type: "Apartment",
   status: "For Sale",
   beds: 2,
@@ -24,7 +42,7 @@ const property = {
   garage: 1,
   yearBuilt: 2018,
   description:
-    "This beautiful modern apartment is located in the heart of downtown. It features an open floor plan with high ceilings, large windows that provide plenty of natural light, and premium finishes throughout. The kitchen is equipped with stainless steel appliances, quartz countertops, and custom cabinetry. The primary bedroom has a walk-in closet and an en-suite bathroom with a double vanity and a walk-in shower. The second bedroom is spacious and can also be used as a home office. The building offers amenities such as a fitness center, rooftop terrace, and 24-hour concierge service. Conveniently located near restaurants, shops, and public transportation.",
+    "This beautiful modern apartment is located in the heart of Dehradun. It features an open floor plan with high ceilings, large windows that provide plenty of natural light, and premium finishes throughout. The kitchen is equipped with stainless steel appliances, quartz countertops, and custom cabinetry. The primary bedroom has a walk-in closet and an en-suite bathroom with a double vanity and a walk-in shower. The second bedroom is spacious and can also be used as a home office. The building offers amenities such as a fitness center, rooftop terrace, and 24-hour concierge service. Conveniently located near restaurants, shops, and public transportation.",
   features: [
     "Central Air Conditioning",
     "Hardwood Floors",
@@ -40,26 +58,30 @@ const property = {
     "Elevator",
   ],
   images: [
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
-    "/placeholder.svg?height=600&width=800",
+    "/pexels-binyaminmellish-186077.jpg?height=600&width=800",
+    "/pexels-binyaminmellish-186077.jpg?height=600&width=800",
+    "/pexels-binyaminmellish-186077.jpg?height=600&width=800",
+    "/pexels-binyaminmellish-186077.jpg?height=600&width=800",
   ],
   agent: {
     name: "John Smith",
     phone: "(555) 123-4567",
-    email: "john@realestate.com",
-    image: "/placeholder.svg?height=100&width=100",
+    email: "john@InRealty.com",
+    image: "/pexels-binyaminmellish-186077.jpg?height=100&width=100",
   },
-}
+};
 
-export default function PropertyDetailPage({ params }: { params: { id: string } }) {
-  const [isFavorite, setIsFavorite] = useState(false)
-  const [date, setDate] = useState<Date | undefined>(undefined)
+export default function PropertyDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [date, setDate] = useState<Date | undefined>(undefined);
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite)
-  }
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -79,7 +101,12 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
           </div>
         </div>
         <div className="flex items-center gap-2 mt-4 md:mt-0">
-          <Button variant="outline" size="icon" onClick={toggleFavorite} className={isFavorite ? "text-red-500" : ""}>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={toggleFavorite}
+            className={isFavorite ? "text-red-500" : ""}
+          >
             <Heart className={isFavorite ? "fill-red-500" : ""} />
           </Button>
           <Button variant="outline" size="icon">
@@ -98,13 +125,17 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                   <CarouselItem key={index}>
                     <div className="relative h-[300px] md:h-[500px] w-full">
                       <img
-                        src={image || "/placeholder.svg"}
+                        src={image || "/pexels-binyaminmellish-186077.jpg"}
                         alt={`Property image ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg"
                       />
                       <Badge
                         className="absolute top-4 left-4"
-                        variant={property.status === "For Rent" ? "secondary" : "default"}
+                        variant={
+                          property.status === "For Rent"
+                            ? "secondary"
+                            : "default"
+                        }
                       >
                         {property.status}
                       </Badge>
@@ -149,7 +180,9 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
             <TabsContent value="details" className="mt-4">
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Property Details</h3>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Property Details
+                  </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                     <div>
                       <p className="text-muted-foreground">Property Type</p>
@@ -165,14 +198,18 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-4">Description</h3>
-                  <p className="text-muted-foreground whitespace-pre-line">{property.description}</p>
+                  <p className="text-muted-foreground whitespace-pre-line">
+                    {property.description}
+                  </p>
                 </CardContent>
               </Card>
             </TabsContent>
             <TabsContent value="features" className="mt-4">
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Property Features</h3>
+                  <h3 className="text-xl font-semibold mb-4">
+                    Property Features
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {property.features.map((feature, index) => (
                       <div key={index} className="flex items-center">
@@ -192,7 +229,9 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                     <div className="text-center">
                       <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                       <p className="text-lg font-medium">Map View</p>
-                      <p className="text-muted-foreground">Interactive map would be displayed here.</p>
+                      <p className="text-muted-foreground">
+                        Interactive map would be displayed here.
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -207,10 +246,16 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl font-bold">
                   {property.status === "For Rent"
-                    ? `$${property.price.toLocaleString()}/month`
-                    : `$${property.price.toLocaleString()}`}
+                    ? `$₹{property.price.toLocaleString()}/month`
+                    : `$₹{property.price.toLocaleString()}`}
                 </h3>
-                <Badge variant={property.status === "For Rent" ? "secondary" : "default"}>{property.status}</Badge>
+                <Badge
+                  variant={
+                    property.status === "For Rent" ? "secondary" : "default"
+                  }
+                >
+                  {property.status}
+                </Badge>
               </div>
               <div className="space-y-4">
                 <div className="relative">
@@ -239,13 +284,15 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
               <h3 className="text-lg font-semibold mb-4">Listing Agent</h3>
               <div className="flex items-center mb-4">
                 <img
-                  src={property.agent.image || "/placeholder.svg"}
+                  src={property.agent.image || "/pexels-binyaminmellish-186077.jpg"}
                   alt={property.agent.name}
                   className="h-16 w-16 rounded-full mr-4"
                 />
                 <div>
                   <p className="font-medium">{property.agent.name}</p>
-                  <p className="text-muted-foreground text-sm">Real Estate Agent</p>
+                  <p className="text-muted-foreground text-sm">
+                    Real Estate Agent
+                  </p>
                 </div>
               </div>
               <div className="space-y-3">
@@ -274,14 +321,20 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
                 {[1, 2, 3].map((item) => (
                   <div key={item} className="flex gap-3">
                     <img
-                      src="/placeholder.svg?height=80&width=120"
+                      src="/pexels-binyaminmellish-186077.jpg?height=80&width=120"
                       alt="Property"
                       className="w-20 h-20 object-cover rounded-md"
                     />
                     <div>
-                      <p className="font-medium text-sm line-clamp-1">Similar Property {item}</p>
-                      <p className="text-muted-foreground text-xs">{property.location}</p>
-                      <p className="text-primary text-sm font-medium mt-1">$325,000</p>
+                      <p className="font-medium text-sm line-clamp-1">
+                        Similar Property {item}
+                      </p>
+                      <p className="text-muted-foreground text-xs">
+                        {property.location}
+                      </p>
+                      <p className="text-primary text-sm font-medium mt-1">
+                        $325,000
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -291,6 +344,5 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
         </div>
       </div>
     </div>
-  )
+  );
 }
-

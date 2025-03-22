@@ -9,7 +9,8 @@ export default function HeroSection() {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: "url('/placeholder.svg?height=800&width=1600')",
+            backgroundImage:
+              "url('/pexels-binyaminmellish-186077.jpg?height=800&width=1600')",
             backgroundPosition: "center",
           }}
         >

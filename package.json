@@ -1,12 +1,13 @@
 {
-  "name": "RealEstate",
+  "name": "InRealty",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "install-legacy": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

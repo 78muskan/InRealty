@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Home className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">RealEstate</span>
+              <span className="text-xl font-bold">InRealty</span>
             </div>
             <p className="text-muted-foreground mb-4">
               Find your dream home with our comprehensive real estate marketplace.
@@ -68,15 +68,15 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 text-primary shrink-0 mt-0.5" />
-                <span className="text-muted-foreground">123 Real Estate Ave, Property City, 12345</span>
+                <span className="text-muted-foreground">123 Real Dehradun, Property City, 12345</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-primary" />
-                <span className="text-muted-foreground">+1 (555) 123-4567</span>
+                <span className="text-muted-foreground">+91 (555) 123-4567</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-primary" />
-                <span className="text-muted-foreground">info@realestate.com</span>
+                <span className="text-muted-foreground">info@InRealty.com</span>
               </li>
             </ul>
           </div>
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t mt-12 pt-6 text-center text-muted-foreground">
-          <p>© {new Date().getFullYear()} RealEstate. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} InRealty. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -20,27 +20,29 @@ export default function ContactPage() {
     subject: "",
     message: "",
     inquiryType: "general",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate API call
     setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSuccess(true)
+      setIsSubmitting(false);
+      setIsSuccess(true);
       setFormData({
         name: "",
         email: "",
@@ -48,46 +50,47 @@ export default function ContactPage() {
         subject: "",
         message: "",
         inquiryType: "general",
-      })
+      });
 
       // Reset success message after 5 seconds
       setTimeout(() => {
-        setIsSuccess(false)
-      }, 5000)
-    }, 1500)
-  }
+        setIsSuccess(false);
+      }, 5000);
+    }, 1500);
+  };
 
   const officeLocations = [
     {
       name: "Headquarters",
-      address: "123 Real Estate Ave, Property City, 12345",
-      phone: "+1 (555) 123-4567",
-      email: "info@realestate.com",
+      address: "123 Real Dehradun, Property City, 12345",
+      phone: "+91 (555) 123-4567",
+      email: "info@InRealty.com",
       hours: "Monday - Friday: 9AM - 6PM\nSaturday: 10AM - 4PM\nSunday: Closed",
     },
     {
-      name: "Downtown Office",
-      address: "456 Main Street, Downtown, 67890",
-      phone: "+1 (555) 987-6543",
-      email: "downtown@realestate.com",
+      name: "Dehradun Office",
+      address: "456 Main Street, Dehradun, 67890",
+      phone: "+91 (555) 987-6543",
+      email: "Dehradun@InRealty.com",
       hours: "Monday - Friday: 9AM - 6PM\nSaturday: 10AM - 4PM\nSunday: Closed",
     },
     {
       name: "Suburban Branch",
-      address: "789 Suburb Lane, Suburbia, 54321",
-      phone: "+1 (555) 456-7890",
-      email: "suburban@realestate.com",
+      address: "789 Gandhi Murti, Bihar, 54321",
+      phone: "+91 (555) 456-7890",
+      email: "suburban@InRealty.com",
       hours: "Monday - Friday: 9AM - 6PM\nSaturday: 10AM - 4PM\nSunday: Closed",
     },
-  ]
+  ];
 
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Have questions about a property or need assistance? Our team is here to help. Reach out to us using the form
-          below or visit one of our offices.
+          Have questions about a property or need assistance? Our team is here
+          to help. Reach out to us using the form below or visit one of our
+          offices.
         </p>
       </div>
 
@@ -128,7 +131,8 @@ export default function ContactPage() {
               <CheckCircle className="h-4 w-4 text-green-600" />
               <AlertTitle className="text-green-600">Message Sent!</AlertTitle>
               <AlertDescription>
-                Thank you for contacting us. We've received your message and will get back to you shortly.
+                Thank you for contacting us. We've received your message and
+                will get back to you shortly.
               </AlertDescription>
             </Alert>
           )}
@@ -175,7 +179,9 @@ export default function ContactPage() {
               <Label htmlFor="inquiryType">Inquiry Type</Label>
               <RadioGroup
                 value={formData.inquiryType}
-                onValueChange={(value) => handleSelectChange("inquiryType", value)}
+                onValueChange={(value) =>
+                  handleSelectChange("inquiryType", value)
+                }
                 className="flex flex-col space-y-1"
               >
                 <div className="flex items-center space-x-2">
@@ -238,53 +244,76 @@ export default function ContactPage() {
         </div>
 
         <div>
-          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-6">
+            Frequently Asked Questions
+          </h2>
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-2">How do I schedule a property viewing?</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                How do I schedule a property viewing?
+              </h3>
               <p className="text-muted-foreground">
-                You can schedule a viewing directly through our website by clicking the "Schedule Viewing" button on any
-                property listing. Alternatively, you can contact our agents directly using the contact form.
+                You can schedule a viewing directly through our website by
+                clicking the "Schedule Viewing" button on any property listing.
+                Alternatively, you can contact our agents directly using the
+                contact form.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">What documents do I need to sell my property?</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                What documents do I need to sell my property?
+              </h3>
               <p className="text-muted-foreground">
-                To list your property, you'll need proof of ownership, property tax records, floor plans (if available),
-                and high-quality photos. Our agents can help you gather all necessary documentation.
+                To list your property, you'll need proof of ownership, property
+                tax records, floor plans (if available), and high-quality
+                photos. Our agents can help you gather all necessary
+                documentation.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">How long does the buying process take?</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                How long does the buying process take?
+              </h3>
               <p className="text-muted-foreground">
-                The timeline varies depending on various factors, but typically the process takes 30-60 days from offer
-                acceptance to closing. Our agents will guide you through each step to ensure a smooth transaction.
+                The timeline varies depending on various factors, but typically
+                the process takes 30-60 days from offer acceptance to closing.
+                Our agents will guide you through each step to ensure a smooth
+                transaction.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">Do you offer virtual tours?</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Do you offer virtual tours?
+              </h3>
               <p className="text-muted-foreground">
-                Yes, many of our listings include virtual tours. Look for the "Virtual Tour" badge on property listings
-                or contact an agent to request a virtual showing for any property.
+                Yes, many of our listings include virtual tours. Look for the
+                "Virtual Tour" badge on property listings or contact an agent to
+                request a virtual showing for any property.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">What are the fees for selling a property?</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                What are the fees for selling a property?
+              </h3>
               <p className="text-muted-foreground">
-                Our standard commission is competitive with market rates. Please contact us directly for a detailed
-                breakdown of fees, as they may vary based on property type and location.
+                Our standard commission is competitive with market rates. Please
+                contact us directly for a detailed breakdown of fees, as they
+                may vary based on property type and location.
               </p>
             </div>
           </div>
 
           <div className="mt-8 p-6 bg-muted rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">Need Immediate Assistance?</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              Need Immediate Assistance?
+            </h3>
             <p className="text-muted-foreground mb-4">
-              Our customer support team is available during business hours to assist you with any urgent inquiries.
+              Our customer support team is available during business hours to
+              assist you with any urgent inquiries.
             </p>
             <div className="flex items-center">
               <Phone className="h-5 w-5 text-primary mr-3" />
-              <span className="font-medium">+1 (555) 123-4567</span>
+              <span className="font-medium">+91 (555) 123-4567</span>
             </div>
           </div>
         </div>
@@ -297,12 +326,12 @@ export default function ContactPage() {
             <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
             <p className="text-lg font-medium">Interactive Map</p>
             <p className="text-muted-foreground">
-              An interactive map showing our office locations would be displayed here.
+              An interactive map showing our office locations would be displayed
+              here.
             </p>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

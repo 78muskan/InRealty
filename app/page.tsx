@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Search, MapPin, Building, DollarSign } from "lucide-react"
-import FeaturedProperties from "@/components/featured-properties"
-import HeroSection from "@/components/hero-section"
-import HowItWorks from "@/components/how-it-works"
-import Testimonials from "@/components/testimonials"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, MapPin, Building, DollarSign } from "lucide-react";
+import FeaturedProperties from "@/components/featured-properties";
+import HeroSection from "@/components/hero-section";
+import HowItWorks from "@/components/how-it-works";
+import Testimonials from "@/components/testimonials";
 
 export default function HomePage() {
   return (
@@ -31,6 +31,7 @@ export default function HomePage() {
                   <option value="apartment">Apartment</option>
                   <option value="condo">Condo</option>
                   <option value="land">Land</option>
+                  <option value="land">Rent</option>
                 </select>
               </div>
             </div>
@@ -73,9 +74,12 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Dream Home?</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Find Your Dream Home?
+          </h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who found their perfect property through our platform.
+            Join thousands of satisfied customers who found their perfect
+            property through our platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/properties">
@@ -84,7 +88,11 @@ export default function HomePage() {
               </Button>
             </Link>
             <Link href="/auth/signup">
-              <Button variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-white">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-white/10 hover:bg-white/20 text-white border-white"
+              >
                 Sign Up Now
               </Button>
             </Link>
@@ -92,6 +100,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
-

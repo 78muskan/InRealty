@@ -1,48 +1,63 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Menu, X, User, LogOut, Settings, Home, MessageSquare } from "lucide-react"
-import { ModeToggle } from "./mode-toggle"
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Menu,
+  X,
+  User,
+  LogOut,
+  Settings,
+  Home,
+  MessageSquare,
+} from "lucide-react";
+import { ModeToggle } from "./mode-toggle";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const pathname = usePathname();
 
   // Check if user is logged in on client side
   useEffect(() => {
-    const user = localStorage.getItem("user")
+    const user = localStorage.getItem("user");
     if (user) {
-      setIsLoggedIn(true)
-      const userData = JSON.parse(user)
-      setIsAdmin(userData.role === "admin")
+      setIsLoggedIn(true);
+      const userData = JSON.parse(user);
+      setIsAdmin(userData.role === "admin");
     }
-  }, [])
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("user")
-    setIsLoggedIn(false)
-    setIsAdmin(false)
-    window.location.href = "/"
-  }
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+    window.location.href = "/";
+  };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Properties", href: "/properties" },
     { name: "Sell", href: "/sell" },
     { name: "About", href: "/about" },
+    { name: "AI", href: "/contract-generator" },
     { name: "Contact", href: "/contact" },
-  ]
+    { name: "Profile", href: "/auth/signup" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -50,7 +65,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
             <Home className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">RealEstate</span>
+            <span className="text-xl font-bold">InRealty</span>
           </Link>
         </div>
 
@@ -61,7 +76,9 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                pathname === link.href ? "text-primary" : "text-muted-foreground"
+                pathname === link.href
+                  ? "text-primary"
+                  : "text-muted-foreground"
               }`}
             >
               {link.name}
@@ -75,9 +92,12 @@ export default function Navbar() {
           {isLoggedIn ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Button
+                  variant="ghost"
+                  className="relative h-8 w-8 rounded-full"
+                >
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg" alt="User" />
+                    <AvatarImage src="/pexels-binyaminmellish-186077.jpg" alt="User" />
                     <AvatarFallback>{isAdmin ? "AD" : "U"}</AvatarFallback>
                   </Avatar>
                 </Button>
@@ -103,7 +123,10 @@ export default function Navbar() {
                     <span>Messages</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogout} className="flex items-center">
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="flex items-center"
+                >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
@@ -121,8 +144,17 @@ export default function Navbar() {
           )}
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" className="md:hidden" size="icon" onClick={toggleMenu}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <Button
+            variant="ghost"
+            className="md:hidden"
+            size="icon"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </Button>
         </div>
       </div>
@@ -136,7 +168,9 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === link.href ? "text-primary" : "text-muted-foreground"
+                  pathname === link.href
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -159,6 +193,5 @@ export default function Navbar() {
         </div>
       )}
     </header>
-  )
+  );
 }
-

@@ -4,11 +4,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { ChatbotWidget } from "@/components/chatbot-widget"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "RealEstate - Find Your Dream Home",
+  title: "InRealty - Find Your Dream Home",
   description: "A modern real estate marketplace to find your perfect property",
 };
 
@@ -29,6 +30,8 @@ export default function RootLayout({
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-1">{children}</main>
+            <ChatbotWidget/>
+
             <Footer />
           </div>
         </ThemeProvider>
@@ -38,3 +41,4 @@ export default function RootLayout({
 }
 
 import "./globals.css";
+

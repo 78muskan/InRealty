@@ -73,7 +73,7 @@ export default function SellPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="title">Property Title</Label>
-                  <Input id="title" placeholder="e.g. Modern Apartment in Downtown" required />
+                  <Input id="title" placeholder="e.g. Modern Apartment in Dehradun" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="property-type">Property Type</Label>

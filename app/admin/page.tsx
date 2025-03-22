@@ -1,13 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import {
   BarChart,
   Building,
@@ -20,16 +27,16 @@ import {
   CheckCircle,
   Clock,
   X,
-} from "lucide-react"
-import AdminSidebar from "@/components/admin-sidebar"
+} from "lucide-react";
+import AdminSidebar from "@/components/admin-sidebar";
 
 // Sample data
 const properties = [
   {
     id: 1,
-    title: "Modern Apartment in Downtown",
+    title: "Modern Apartment in Dehradun",
     price: 350000,
-    location: "Downtown, City",
+    location: "Dehradun, City",
     type: "Apartment",
     status: "Active",
     date: "2023-05-15",
@@ -43,7 +50,7 @@ const properties = [
     type: "Villa",
     status: "Pending",
     date: "2023-05-10",
-    owner: "Sarah Johnson",
+    owner: "Shreya Singh",
   },
   {
     id: 3,
@@ -53,7 +60,7 @@ const properties = [
     type: "Studio",
     status: "Inactive",
     date: "2023-05-05",
-    owner: "Michael Chen",
+    owner: "Muskan",
   },
   {
     id: 4,
@@ -63,19 +70,19 @@ const properties = [
     type: "House",
     status: "Active",
     date: "2023-05-01",
-    owner: "Emily Rodriguez",
+    owner: "Hansika",
   },
   {
     id: 5,
     title: "Penthouse with City Views",
     price: 850000,
-    location: "Downtown, City",
+    location: "Dehradun, City",
     type: "Penthouse",
     status: "Active",
     date: "2023-04-28",
-    owner: "David Wilson",
+    owner: "Adarsh",
   },
-]
+];
 
 const users = [
   {
@@ -88,7 +95,7 @@ const users = [
   },
   {
     id: 2,
-    name: "Sarah Johnson",
+    name: "Shreya Singh",
     email: "sarah@example.com",
     role: "Seller",
     status: "Active",
@@ -96,7 +103,7 @@ const users = [
   },
   {
     id: 3,
-    name: "Michael Chen",
+    name: "Muskan",
     email: "michael@example.com",
     role: "Agent",
     status: "Active",
@@ -104,7 +111,7 @@ const users = [
   },
   {
     id: 4,
-    name: "Emily Rodriguez",
+    name: "Hansika",
     email: "emily@example.com",
     role: "Buyer",
     status: "Inactive",
@@ -112,18 +119,18 @@ const users = [
   },
   {
     id: 5,
-    name: "David Wilson",
+    name: "Adarsh",
     email: "david@example.com",
     role: "Seller",
     status: "Active",
     joined: "2023-05-01",
   },
-]
+];
 
 const inquiries = [
   {
     id: 1,
-    property: "Modern Apartment in Downtown",
+    property: "Modern Apartment in Dehradun",
     user: "John Smith",
     date: "2023-05-15",
     status: "New",
@@ -132,7 +139,7 @@ const inquiries = [
   {
     id: 2,
     property: "Luxury Villa with Pool",
-    user: "Sarah Johnson",
+    user: "Shreya Singh",
     date: "2023-05-14",
     status: "Responded",
     message: "What are the HOA fees for this property?",
@@ -140,7 +147,7 @@ const inquiries = [
   {
     id: 3,
     property: "Cozy Studio in Arts District",
-    user: "Michael Chen",
+    user: "Muskan",
     date: "2023-05-13",
     status: "Closed",
     message: "Is the rent negotiable for a longer lease term?",
@@ -148,7 +155,7 @@ const inquiries = [
   {
     id: 4,
     property: "Family Home with Garden",
-    user: "Emily Rodriguez",
+    user: "Hansika",
     date: "2023-05-12",
     status: "New",
     message: "Are pets allowed in this property?",
@@ -156,78 +163,96 @@ const inquiries = [
   {
     id: 5,
     property: "Penthouse with City Views",
-    user: "David Wilson",
+    user: "Adarsh",
     date: "2023-05-11",
     status: "Responded",
     message: "Is parking included with this property?",
   },
-]
+];
 
 export default function AdminDashboard() {
-  const [isClient, setIsClient] = useState(false)
-  const router = useRouter()
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true)
+    setIsClient(true);
     // Check if user is admin
-    const user = localStorage.getItem("user")
+    const user = localStorage.getItem("user");
     if (!user) {
-      router.push("/auth/login")
-      return
+      router.push("/auth/login");
+      return;
     }
 
-    const userData = JSON.parse(user)
+    const userData = JSON.parse(user);
     if (userData.role !== "admin") {
-      router.push("/")
+      router.push("/");
     }
-  }, [router])
+  }, [router]);
 
   if (!isClient) {
-    return null
+    return null;
   }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "Active":
         return (
-          <Badge variant="outline" className="bg-green-50 text-green-600 border-green-200">
+          <Badge
+            variant="outline"
+            className="bg-green-50 text-green-600 border-green-200"
+          >
             <CheckCircle className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       case "Pending":
         return (
-          <Badge variant="outline" className="bg-yellow-50 text-yellow-600 border-yellow-200">
+          <Badge
+            variant="outline"
+            className="bg-yellow-50 text-yellow-600 border-yellow-200"
+          >
             <Clock className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       case "Inactive":
         return (
-          <Badge variant="outline" className="bg-red-50 text-red-600 border-red-200">
+          <Badge
+            variant="outline"
+            className="bg-red-50 text-red-600 border-red-200"
+          >
             <X className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       case "New":
         return (
-          <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
+          <Badge
+            variant="outline"
+            className="bg-blue-50 text-blue-600 border-blue-200"
+          >
             <AlertCircle className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       case "Responded":
         return (
-          <Badge variant="outline" className="bg-purple-50 text-purple-600 border-purple-200">
+          <Badge
+            variant="outline"
+            className="bg-purple-50 text-purple-600 border-purple-200"
+          >
             <MessageSquare className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       case "Closed":
         return (
-          <Badge variant="outline" className="bg-gray-50 text-gray-600 border-gray-200">
+          <Badge
+            variant="outline"
+            className="bg-gray-50 text-gray-600 border-gray-200"
+          >
             <CheckCircle className="h-3 w-3 mr-1" /> {status}
           </Badge>
-        )
+        );
       default:
-        return <Badge variant="outline">{status}</Badge>
+        return <Badge variant="outline">{status}</Badge>;
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen bg-muted/40">
@@ -238,7 +263,8 @@ export default function AdminDashboard() {
           <div>
             <h1 className="text-3xl font-bold">Admin Dashboard</h1>
             <p className="text-muted-foreground">
-              Welcome back, Admin. Here's what's happening with your platform today.
+              Welcome back, Admin. Here's what's happening with your platform
+              today.
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -253,9 +279,11 @@ export default function AdminDashboard() {
           <Card>
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <p className="text-muted-foreground text-sm">Total Properties</p>
+                <p className="text-muted-foreground text-sm">
+                  Total Properties
+                </p>
                 <h3 className="text-3xl font-bold">156</h3>
-                <p className="text-green-600 text-sm">+12% from last month</p>
+                <p className="text-green-600 text-sm">+912% from last month</p>
               </div>
               <div className="bg-primary/10 p-3 rounded-full">
                 <Building className="h-8 w-8 text-primary" />
@@ -279,7 +307,7 @@ export default function AdminDashboard() {
               <div>
                 <p className="text-muted-foreground text-sm">Total Revenue</p>
                 <h3 className="text-3xl font-bold">$125,430</h3>
-                <p className="text-green-600 text-sm">+18% from last month</p>
+                <p className="text-green-600 text-sm">+918% from last month</p>
               </div>
               <div className="bg-primary/10 p-3 rounded-full">
                 <DollarSign className="h-8 w-8 text-primary" />
@@ -332,8 +360,12 @@ export default function AdminDashboard() {
                     {properties.map((property) => (
                       <TableRow key={property.id}>
                         <TableCell>{property.id}</TableCell>
-                        <TableCell className="font-medium">{property.title}</TableCell>
-                        <TableCell>${property.price.toLocaleString()}</TableCell>
+                        <TableCell className="font-medium">
+                          {property.title}
+                        </TableCell>
+                        <TableCell>
+                          ${property.price.toLocaleString()}
+                        </TableCell>
                         <TableCell>{property.location}</TableCell>
                         <TableCell>{property.type}</TableCell>
                         <TableCell>{getStatusBadge(property.status)}</TableCell>
@@ -343,7 +375,11 @@ export default function AdminDashboard() {
                             <Button variant="ghost" size="sm">
                               Edit
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-500"
+                            >
                               Delete
                             </Button>
                           </div>
@@ -379,7 +415,9 @@ export default function AdminDashboard() {
                     {users.map((user) => (
                       <TableRow key={user.id}>
                         <TableCell>{user.id}</TableCell>
-                        <TableCell className="font-medium">{user.name}</TableCell>
+                        <TableCell className="font-medium">
+                          {user.name}
+                        </TableCell>
                         <TableCell>{user.email}</TableCell>
                         <TableCell>{user.role}</TableCell>
                         <TableCell>{getStatusBadge(user.status)}</TableCell>
@@ -389,7 +427,11 @@ export default function AdminDashboard() {
                             <Button variant="ghost" size="sm">
                               Edit
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-500"
+                            >
                               Delete
                             </Button>
                           </div>
@@ -424,17 +466,25 @@ export default function AdminDashboard() {
                     {inquiries.map((inquiry) => (
                       <TableRow key={inquiry.id}>
                         <TableCell>{inquiry.id}</TableCell>
-                        <TableCell className="font-medium">{inquiry.property}</TableCell>
+                        <TableCell className="font-medium">
+                          {inquiry.property}
+                        </TableCell>
                         <TableCell>{inquiry.user}</TableCell>
                         <TableCell>{inquiry.date}</TableCell>
                         <TableCell>{getStatusBadge(inquiry.status)}</TableCell>
-                        <TableCell className="max-w-xs truncate">{inquiry.message}</TableCell>
+                        <TableCell className="max-w-xs truncate">
+                          {inquiry.message}
+                        </TableCell>
                         <TableCell>
                           <div className="flex gap-2">
                             <Button variant="ghost" size="sm">
                               Reply
                             </Button>
-                            <Button variant="ghost" size="sm" className="text-red-500">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-500"
+                            >
                               Delete
                             </Button>
                           </div>
@@ -455,8 +505,12 @@ export default function AdminDashboard() {
               <CardContent className="h-96 flex items-center justify-center">
                 <div className="text-center">
                   <BarChart className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-xl font-medium mb-2">Analytics Dashboard</h3>
-                  <p className="text-muted-foreground">Detailed analytics and reporting would be displayed here.</p>
+                  <h3 className="text-xl font-medium mb-2">
+                    Analytics Dashboard
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Detailed analytics and reporting would be displayed here.
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -464,6 +518,5 @@ export default function AdminDashboard() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
-

@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Slider } from "@/components/ui/slider"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Pagination,
   PaginationContent,
@@ -15,24 +21,35 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Heart, MapPin, Bed, Bath, Square, Search, Filter, Grid, List, X } from "lucide-react"
+} from "@/components/ui/pagination";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import {
+  Heart,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Search,
+  Filter,
+  Grid,
+  List,
+  X,
+} from "lucide-react";
 
 // Sample property data
 const properties = [
   {
     id: 1,
-    title: "Modern Apartment in Downtown",
+    title: "Modern Apartment in Dehradun",
     price: 350000,
-    location: "123 Main St, Downtown, City",
+    location: "123 Main St, Dehradun, City",
     type: "Apartment",
     status: "For Sale",
     beds: 2,
     baths: 2,
     area: 1200,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -45,7 +62,7 @@ const properties = [
     beds: 5,
     baths: 4,
     area: 3500,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -58,7 +75,7 @@ const properties = [
     beds: 1,
     baths: 1,
     area: 650,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -71,33 +88,33 @@ const properties = [
     beds: 4,
     baths: 3,
     area: 2200,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
     id: 5,
     title: "Penthouse with City Views",
     price: 850000,
-    location: "202 Skyline Blvd, Downtown, City",
+    location: "202 Skyline Blvd, Dehradun, City",
     type: "Penthouse",
     status: "For Sale",
     beds: 3,
     baths: 3,
     area: 1800,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: false,
   },
   {
     id: 6,
     title: "Renovated Loft in Historic Building",
     price: 425000,
-    location: "303 Heritage St, Downtown, City",
+    location: "303 Heritage St, Dehradun, City",
     type: "Loft",
     status: "For Sale",
     beds: 1,
     baths: 2,
     area: 1100,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: false,
   },
   {
@@ -110,7 +127,7 @@ const properties = [
     beds: 2,
     baths: 2,
     area: 1300,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: false,
   },
   {
@@ -123,39 +140,48 @@ const properties = [
     beds: 3,
     baths: 1,
     area: 1000,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: false,
   },
-]
+];
 
 export default function PropertiesPage() {
-  const [favorites, setFavorites] = useState<number[]>([])
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000000])
-  const [filterOpen, setFilterOpen] = useState(false)
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000000]);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const toggleFavorite = (id: number) => {
     if (favorites.includes(id)) {
-      setFavorites(favorites.filter((favId) => favId !== id))
+      setFavorites(favorites.filter((favId) => favId !== id));
     } else {
-      setFavorites([...favorites, id])
+      setFavorites([...favorites, id]);
     }
-  }
+  };
 
   const formatPrice = (price: number, status: string) => {
-    return status === "For Rent" ? `$${price.toLocaleString()}/month` : `$${price.toLocaleString()}`
-  }
+    return status === "For Rent"
+      ? `₹${price.toLocaleString()}/month`
+      : `₹${price.toLocaleString()}`;
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row justify-between items-start gap-6">
         {/* Filters Sidebar */}
         <div
-          className={`w-full md:w-1/4 bg-background rounded-lg border p-4 ${filterOpen ? "block" : "hidden md:block"}`}
+          className={`w-full md:w-1/4 bg-background rounded-lg border p-4 ${
+            filterOpen ? "block" : "hidden md:block"
+          }`}
         >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Filters</h2>
-            <Button variant="ghost" size="sm" onClick={() => setFilterOpen(false)} className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setFilterOpen(false)}
+              className="md:hidden"
+            >
               <X className="h-4 w-4" />
             </Button>
           </div>
@@ -164,12 +190,14 @@ export default function PropertiesPage() {
             <div>
               <h3 className="font-medium mb-2">Property Type</h3>
               <div className="space-y-2">
-                {["House", "Apartment", "Condo", "Villa", "Studio", "Land"].map((type) => (
-                  <div key={type} className="flex items-center space-x-2">
-                    <Checkbox id={`type-${type}`} />
-                    <Label htmlFor={`type-${type}`}>{type}</Label>
-                  </div>
-                ))}
+                {["House", "Apartment", "Condo", "Villa", "Studio", "Land"].map(
+                  (type) => (
+                    <div key={type} className="flex items-center space-x-2">
+                      <Checkbox id={`type-${type}`} />
+                      <Label htmlFor={`type-${type}`}>{type}</Label>
+                    </div>
+                  )
+                )}
               </div>
             </div>
 
@@ -181,7 +209,9 @@ export default function PropertiesPage() {
                   max={2000000}
                   step={10000}
                   value={priceRange}
-                  onValueChange={(value) => setPriceRange(value as [number, number])}
+                  onValueChange={(value) =>
+                    setPriceRange(value as [number, number])
+                  }
                 />
                 <div className="flex justify-between">
                   <span>${priceRange[0].toLocaleString()}</span>
@@ -194,7 +224,12 @@ export default function PropertiesPage() {
               <h3 className="font-medium mb-2">Bedrooms</h3>
               <div className="flex flex-wrap gap-2">
                 {[1, 2, 3, 4, "5+"].map((num) => (
-                  <Button key={num} variant="outline" size="sm" className="rounded-full">
+                  <Button
+                    key={num}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                  >
                     {num}
                   </Button>
                 ))}
@@ -205,7 +240,12 @@ export default function PropertiesPage() {
               <h3 className="font-medium mb-2">Bathrooms</h3>
               <div className="flex flex-wrap gap-2">
                 {[1, 2, 3, "4+"].map((num) => (
-                  <Button key={num} variant="outline" size="sm" className="rounded-full">
+                  <Button
+                    key={num}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                  >
                     {num}
                   </Button>
                 ))}
@@ -215,7 +255,14 @@ export default function PropertiesPage() {
             <div>
               <h3 className="font-medium mb-2">Features</h3>
               <div className="space-y-2">
-                {["Garage", "Pool", "Garden", "Balcony", "Fireplace", "Air Conditioning"].map((feature) => (
+                {[
+                  "Garage",
+                  "Pool",
+                  "Garden",
+                  "Balcony",
+                  "Fireplace",
+                  "Air Conditioning",
+                ].map((feature) => (
                   <div key={feature} className="flex items-center space-x-2">
                     <Checkbox id={`feature-${feature}`} />
                     <Label htmlFor={`feature-${feature}`}>{feature}</Label>
@@ -288,7 +335,7 @@ export default function PropertiesPage() {
                 <Card key={property.id} className="overflow-hidden group">
                   <div className="relative">
                     <img
-                      src={property.image || "/placeholder.svg"}
+                      src={property.image || "/pexels-binyaminmellish-186077.jpg"}
                       alt={property.title}
                       className="w-full h-48 object-cover transition-transform group-hover:scale-105"
                     />
@@ -300,13 +347,17 @@ export default function PropertiesPage() {
                     >
                       <Heart
                         className={`h-5 w-5 ${
-                          favorites.includes(property.id) ? "fill-red-500 text-red-500" : "text-gray-600"
+                          favorites.includes(property.id)
+                            ? "fill-red-500 text-red-500"
+                            : "text-gray-600"
                         }`}
                       />
                     </Button>
                     <Badge
                       className="absolute top-2 left-2"
-                      variant={property.status === "For Rent" ? "secondary" : "default"}
+                      variant={
+                        property.status === "For Rent" ? "secondary" : "default"
+                      }
                     >
                       {property.status}
                     </Badge>
@@ -314,10 +365,14 @@ export default function PropertiesPage() {
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-lg mb-1 line-clamp-1">{property.title}</h3>
+                        <h3 className="font-semibold text-lg mb-1 line-clamp-1">
+                          {property.title}
+                        </h3>
                         <div className="flex items-center text-muted-foreground mb-2">
                           <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
-                          <span className="text-sm line-clamp-1">{property.location}</span>
+                          <span className="text-sm line-clamp-1">
+                            {property.location}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -336,7 +391,9 @@ export default function PropertiesPage() {
                       </div>
                     </div>
                     <div className="mt-4 pt-4 border-t flex justify-between items-center">
-                      <div className="font-bold text-lg">{formatPrice(property.price, property.status)}</div>
+                      <div className="font-bold text-lg">
+                        {formatPrice(property.price, property.status)}
+                      </div>
                       <Button size="sm">View Details</Button>
                     </div>
                   </CardContent>
@@ -350,7 +407,7 @@ export default function PropertiesPage() {
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-1/3">
                       <img
-                        src={property.image || "/placeholder.svg"}
+                        src={property.image || "/pexels-binyaminmellish-186077.jpg"}
                         alt={property.title}
                         className="w-full h-48 md:h-full object-cover"
                       />
@@ -362,20 +419,28 @@ export default function PropertiesPage() {
                       >
                         <Heart
                           className={`h-5 w-5 ${
-                            favorites.includes(property.id) ? "fill-red-500 text-red-500" : "text-gray-600"
+                            favorites.includes(property.id)
+                              ? "fill-red-500 text-red-500"
+                              : "text-gray-600"
                           }`}
                         />
                       </Button>
                       <Badge
                         className="absolute top-2 left-2"
-                        variant={property.status === "For Rent" ? "secondary" : "default"}
+                        variant={
+                          property.status === "For Rent"
+                            ? "secondary"
+                            : "default"
+                        }
                       >
                         {property.status}
                       </Badge>
                     </div>
                     <CardContent className="p-4 md:w-2/3 flex flex-col">
                       <div>
-                        <h3 className="font-semibold text-lg mb-1">{property.title}</h3>
+                        <h3 className="font-semibold text-lg mb-1">
+                          {property.title}
+                        </h3>
                         <div className="flex items-center text-muted-foreground mb-4">
                           <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
                           <span className="text-sm">{property.location}</span>
@@ -396,7 +461,9 @@ export default function PropertiesPage() {
                         </div>
                       </div>
                       <div className="mt-auto pt-4 border-t flex justify-between items-center">
-                        <div className="font-bold text-lg">{formatPrice(property.price, property.status)}</div>
+                        <div className="font-bold text-lg">
+                          {formatPrice(property.price, property.status)}
+                        </div>
                         <Button>View Details</Button>
                       </div>
                     </CardContent>
@@ -433,6 +500,5 @@ export default function PropertiesPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

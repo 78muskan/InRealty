@@ -11,15 +11,15 @@ import { Heart, MapPin, Bed, Bath, Square, ArrowRight } from "lucide-react"
 const properties = [
   {
     id: 1,
-    title: "Modern Apartment in Downtown",
+    title: "Modern Apartment in Dehradun",
     price: 350000,
-    location: "123 Main St, Downtown, City",
+    location: "123 Main St, Dehradun, City",
     type: "Apartment",
     status: "For Sale",
     beds: 2,
     baths: 2,
     area: 1200,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -32,7 +32,7 @@ const properties = [
     beds: 5,
     baths: 4,
     area: 3500,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -45,7 +45,7 @@ const properties = [
     beds: 1,
     baths: 1,
     area: 650,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
   {
@@ -58,7 +58,7 @@ const properties = [
     beds: 4,
     baths: 3,
     area: 2200,
-    image: "/placeholder.svg?height=300&width=500",
+    image: "/pexels-binyaminmellish-186077.jpg?height=300&width=500",
     featured: true,
   },
 ]
@@ -75,7 +75,7 @@ export default function FeaturedProperties() {
   }
 
   const formatPrice = (price: number, status: string) => {
-    return status === "For Rent" ? `$${price.toLocaleString()}/month` : `$${price.toLocaleString()}`
+    return status === "For Rent" ? `₹${price.toLocaleString()}/month` : `₹${price.toLocaleString()}`
   }
 
   return (
@@ -84,7 +84,7 @@ export default function FeaturedProperties() {
         <Card key={property.id} className="overflow-hidden group">
           <div className="relative">
             <img
-              src={property.image || "/placeholder.svg"}
+              src={property.image || "/pexels-binyaminmellish-186077.jpg"}
               alt={property.title}
               className="w-full h-48 object-cover transition-transform group-hover:scale-105"
             />
