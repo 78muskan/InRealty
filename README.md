@@ -22,7 +22,7 @@ Before running the project, ensure you have the following installed:
 1. **Clone the repository**
 
    ```bash
-   clone repo
+   git clone https://github.com/78muskan/InRealty.git
    cd InRealty
    ```
 
